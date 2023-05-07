@@ -13,3 +13,6 @@ we have faced tragedies from ups and downs of cost push inflation. Those hardshi
 - X: macroeconomic factors – Total 14 indices including US 10 year interest rates, US and EU monetary base, USD/NOK exchange rates, industrial production of US, Dow stock index, Australian coal price
 - y: WTI oil price nearest future price listed on CME (monthly price)
 - Rationale of the variable selection: it is safe to say the oil represents the entire commodities though it has weaken in its leadership at a time when the carbon reduction efforts are in full swing. As it has taken the largest part in financial portfolio, the demand from financial side affects the price more than that of the industrial side so the macroeconomic variables, especially from the US terrotory are chosen.
+
+**N-HITS**
+ARIMA and LSTM models were used in the mid-term so are those explanations omitted in this page. Rather I focused on a latest SOTA model, N-HITS. 
