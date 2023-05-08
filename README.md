@@ -46,4 +46,6 @@ Cristian Challu, Kin G. Olivares, Boris N. Oreshkin, Federico Garza, Max Mergent
 
 Result: ARIMA model which scores 84.4% of accuracy rate was the best among the three models, however, we cannot tell it is indeed the top model given the feature of ARIMA model, which entrails the latest point to the end. N-HITS might be picked as a potential tool with which we can develop further to better cast
 
+![image](https://user-images.githubusercontent.com/62051358/236746765-df3d3237-d04a-4abb-852a-714c6fb96447.png)
+
 
