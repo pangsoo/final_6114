@@ -18,36 +18,28 @@ we have faced tragedies from ups and downs of cost push inflation. Those hardshi
 
 ARIMA and LSTM models were used in the mid-term so are those explanations omitted in this page. Rather I focused on a latest SOTA model, N-HITS. 
 
-- Parameter
+- Parameter tuning:
 
-h: int, Forecast horizon.
-input_size: int, autorregresive inputs size, y=[1,2,3,4] input_size=2 -> y_[t-2:t]=[1,2].
-stat_exog_list: str list, static exogenous columns.
-hist_exog_list: str list, historic exogenous columns.
-futr_exog_list: str list, future exogenous columns.
-activation: str, activation from [‘ReLU’, ‘Softplus’, ‘Tanh’, ‘SELU’, ‘LeakyReLU’, ‘PReLU’, ‘Sigmoid’].
-stack_types: List[str], stacks list in the form N * [‘identity’], to be deprecated in favor of n_stacks.
-n_blocks: List[int], Number of blocks for each stack. Note that len(n_blocks) = len(stack_types).
-mlp_units: List[List[int]], Structure of hidden layers for each stack type. Each internal list should contain the number of units of each hidden layer. Note that len(n_hidden) = len(stack_types).
-n_harmonics: int, Number of harmonic terms for seasonality stack type. Note that len(n_harmonics) = len(stack_types). Note that it will only be used if a seasonality stack is used.
-n_polynomials: int, polynomial degree for trend stack. Note that len(n_polynomials) = len(stack_types). Note that it will only be used if a trend stack is used.
-dropout_prob_theta: float, Float between (0, 1). Dropout for N-BEATS basis.
-loss: PyTorch module, instantiated train loss class from losses collection.
-valid_loss: PyTorch module=loss, instantiated valid loss class from losses collection.
-max_steps: int=1000, maximum number of training steps.
-learning_rate: float=1e-3, Learning rate between (0, 1).
-num_lr_decays: int=-1, Number of learning rate decays, evenly distributed across max_steps.
-early_stop_patience_steps: int=-1, Number of validation iterations before early stopping.
-val_check_steps: int=100, Number of training steps between every validation loss check.
-batch_size: int, number of different series in each batch.
-windows_batch_size: int=None, windows sampled from rolled data, default uses all.
-valid_batch_size: int=None, number of different series in each validation and test batch.
-step_size: int=1, step size between each window of temporal data.
-scaler_type: str=‘identity’, type of scaler for temporal inputs normalization see temporal scalers.
-random_seed: int, random_seed for pytorch initializer and numpy generators.
-num_workers_loader: int=os.cpu_count(), workers to be used by TimeSeriesDataLoader.
-drop_last_loader: bool=False, if True TimeSeriesDataLoader drops last non-full batch.
-alias: str, optional, Custom name of the model
+          NHITS(input_size= 29, 
+                h=horizon,                
+                stat_exog_list = None,
+                # gpus = 1,
+                step_size = 1,
+                hist_exog_list = hist_list,
+                futr_exog_list = futr_list,
+                n_blocks = [1, 1, 1],
+                mlp_units = [[512, 512], [512, 512], [512, 512]],
+                interpolation_mode = 'nearest',
+                n_pool_kernel_size = [2, 2, 2],
+                n_freq_downsample=[4, 2, 1],
+                scaler_type = 'robust',
+                learning_rate=1e-3,
+                pooling_mode = 'MaxPool1d',
+                activation='ReLU',
+                batch_size=32,
+                random_seed=42,
+                max_epochs=50
+                
 
 Reference: Neural Hierarchical Interpolation for Time Series Forecasting by
 Cristian Challu, Kin G. Olivares, Boris N. Oreshkin, Federico Garza, Max Mergenthaler-Canseco, Artur Dubrawski (https://arxiv.org/pdf/2201.12886.pdf)
