@@ -18,27 +18,26 @@ we have faced tragedies from ups and downs of cost push inflation. Those hardshi
 
 ARIMA and LSTM models were used in the mid-term so are those explanations omitted in this page. Rather I focused on a latest SOTA model, N-HITS. 
 
-- Parameter tuning:
+- Parameter tuning used for the model
 
-          NHITS(input_size= 29, 
-                h=horizon,                
-                stat_exog_list = None,
-                # gpus = 1,
-                step_size = 1,
-                hist_exog_list = hist_list,
-                futr_exog_list = futr_list,
-                n_blocks = [1, 1, 1],
-                mlp_units = [[512, 512], [512, 512], [512, 512]],
-                interpolation_mode = 'nearest',
-                n_pool_kernel_size = [2, 2, 2],
-                n_freq_downsample=[4, 2, 1],
+          NHITS(input_size= 29, # autorregresive inputs size
+                h=horizon, # setting as 15 months in this model               
+                stat_exog_list = None, # str list, static exogenous columns
+                step_size = 1, # step size between each window of temporal data
+                hist_exog_list = hist_list, # str list, historic exogenous columns
+                futr_exog_list = futr_list, # str list, future exogenous columns
+                n_blocks = [1, 1, 1], # l Number of blocks for each stack. len(n_blocks) = len(stack_types)
+                mlp_units = [[512, 512], [512, 512], [512, 512]], # Structure of hidden layers for each stack type. len(n_hidden) = len(stack_types)
+                interpolation_mode = 'nearest', # dout of ['linear', 'nearest', cubic-x']
+                n_pool_kernel_size = [2, 2, 2], # num_stacks x num_blocks, the kernel size for each block in each stack
+                n_freq_downsample=[4, 2, 1], # num_stacks x num_blocks, downsampling factors before interpolation for each block in each stack
                 scaler_type = 'robust',
-                learning_rate=1e-3,
-                pooling_mode = 'MaxPool1d',
-                activation='ReLU',
-                batch_size=32,
+                learning_rate=1e-3, # between (0, 1)
+                pooling_mode = 'MaxPool1d', # not to use False (Average Pooling)
+                activation='ReLU', # encoder/decoder intermediate layer, ReLU nonlinearities
+                batch_size=32, # number of time series of each training set with default of 32 times
                 random_seed=42,
-                max_epochs=50
+                max_epochs=50 # default number = 100
                 
 
 Reference: Neural Hierarchical Interpolation for Time Series Forecasting by
