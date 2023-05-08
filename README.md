@@ -43,3 +43,7 @@ ARIMA and LSTM models were used in the mid-term so are those explanations omitte
 
 Reference: Neural Hierarchical Interpolation for Time Series Forecasting by
 Cristian Challu, Kin G. Olivares, Boris N. Oreshkin, Federico Garza, Max Mergenthaler-Canseco, Artur Dubrawski (https://arxiv.org/pdf/2201.12886.pdf)
+
+Result: ARIMA model which scores 84.4% of accuracy rate was the best among the three models, however, we cannot tell it is indeed the top model given the feature of ARIMA model, which entrails the latest point to the end. N-HITS might be picked as a potential tool with which we can develop further to better cast
+
+
