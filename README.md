@@ -19,6 +19,7 @@ we have faced tragedies from ups and downs of cost push inflation. Those hardshi
 ARIMA and LSTM models were used in the mid-term so are those explanations omitted in this page. Rather I focused on a latest SOTA model, N-HITS. 
 
 - Parameter
+
 h: int, Forecast horizon.
 input_size: int, autorregresive inputs size, y=[1,2,3,4] input_size=2 -> y_[t-2:t]=[1,2].
 stat_exog_list: str list, static exogenous columns.
